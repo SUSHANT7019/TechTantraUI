@@ -7,7 +7,7 @@
  * - JSON body handling
  */
 
-const BASE_URL ='https://techtantra-454332459962.asia-southeast1.run.app';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://techtantra-454332459962.asia-southeast1.run.app/api/';
 
 async function request(endpoint, options = {}) {
     if (!BASE_URL) {
