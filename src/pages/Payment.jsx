@@ -55,21 +55,32 @@ export default function Payment() {
         setIsLoading(true);
 
         try {
+            // Collect EVERYTHING (Registration Data + Payment Data)
             const formData = new FormData();
-            formData.append('registration_id', registrationId);
-            formData.append('transaction_id', transactionId);
-            formData.append('amount', amount);
-            formData.append('payment_status', 'Pending Verification');
-            formData.append('proof_screenshot', proofFile);
 
-            await api.upload("payments/", formData);
+            // Add Registration Data from link state
+            const registrationData = location.state || {};
+            Object.keys(registrationData).forEach(key => {
+                if (key === 'team_members') {
+                    formData.append(key, JSON.stringify(registrationData[key]));
+                } else {
+                    formData.append(key, registrationData[key]);
+                }
+            });
 
-            toast.success("Payment Submitted! We will verify it shortly.");
+            // Add Payment Data
+            formData.append('payment_id', transactionId);
+            formData.append('payment_proof', proofFile);
+
+            // Save EVERYTHING to the database at once
+            await api.upload("register/", formData);
+
+            toast.success("Registration & Payment Successful!");
             navigate('/success', { state: { transactionId, team_name } });
 
         } catch (error) {
-            console.error("Payment verification failed:", error);
-            const errorMsg = error.data?.detail || "Payment verification failed. Please try again.";
+            console.error("Submission failed:", error);
+            const errorMsg = error.data?.detail || "Submission failed. Please try again.";
             toast.error(errorMsg);
         } finally {
             setIsLoading(false);
