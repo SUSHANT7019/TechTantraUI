@@ -31,7 +31,7 @@ const scheduleData = [
                 event: "Start Of The Journey",
                 descriptions: [
                     "The clock starts and the creative journey begins — form teams and ignite ideas.",
-                    "Turn concepts into coded reality as the 36-hour challenge officially kicks off.",
+                    "Turn concepts into coded reality as the 24-hour challenge officially kicks off.",
                 ],
             },
             {
