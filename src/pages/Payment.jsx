@@ -129,6 +129,12 @@ export default function Payment() {
 
                     {/* Details & Form */}
                     <div className="space-y-4">
+                        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-sm text-yellow-800 flex gap-2 items-start">
+                            <AlertCircle className="w-5 h-5 flex-shrink-0 text-yellow-600" />
+                            <p>
+                                Please Enter <strong>Correct Transaction ID</strong> and add <strong>Team Name</strong> in Msg Box.
+                            </p>
+                        </div>
                         {/* Readonly Details */}
                         <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 space-y-2 text-sm">
                             <div className="flex justify-between">
