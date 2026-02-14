@@ -1,0 +1,228 @@
+/* ============================================
+   TechTantra 1.0 Ticket Styles
+   ============================================
+   Exact copy of original inline <style>.
+   Scoped under .ticket-page to avoid conflicts
+   with global styles.
+   ============================================ */
+
+/* Reset (scoped) */
+.ticket-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ticket-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #dff6ff, #b9e9ff, #a0e4ff);
+}
+
+/* MAIN CARD */
+
+.ticket-page .ticket {
+  width: 1000px;
+  max-width: 95%;
+  min-height: 500px;
+  padding: 40px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 50px rgba(0, 119, 182, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft background glow */
+
+.ticket-page .ticket::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #90e0ef 0%, transparent 70%);
+  z-index: 0;
+}
+
+/* Watermark logo centered behind content */
+.ticket-page .ticket::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  width: 80%;
+  height: 80%;
+  background-image: url('/logo.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ticket-page .header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 35px;
+}
+
+.ticket-page .event-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #0077b6;
+  letter-spacing: 2px;
+}
+
+.ticket-page .subtitle {
+  color: #0096c7;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+/* GRID */
+
+.ticket-page .content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+/* LEFT */
+
+.ticket-page .left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ticket-page .info {
+  font-size: 17px;
+  color: #023e8a;
+}
+
+.ticket-page .label {
+  font-weight: 600;
+  color: #0077b6;
+}
+
+/* TOKEN BOX */
+
+.ticket-page .token {
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #48cae4, #0096c7);
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  box-shadow: 0 10px 25px rgba(0, 150, 199, 0.4);
+}
+
+/* RIGHT */
+
+.ticket-page .right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.ticket-page .field {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-page .field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0077b6;
+  margin-bottom: 5px;
+}
+
+.ticket-page .field span {
+  font-size: 18px;
+  color: #023e8a;
+  font-weight: 500;
+  border-bottom: 2px solid #90e0ef;
+  padding-bottom: 6px;
+}
+
+/* FOOTER */
+
+.ticket-page .footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #023e8a;
+  font-weight: 500;
+}
+
+@media(max-width:768px) {
+  .ticket-page .content {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-page .event-title {
+    font-size: 26px;
+  }
+
+  .ticket-page .ticket {
+    padding: 25px;
+    min-height: auto;
+  }
+}
+
+@media(max-width:480px) {
+  .ticket-page .event-title {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .ticket-page .ticket {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .ticket-page .token {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .ticket-page .info {
+    font-size: 14px;
+  }
+
+  .ticket-page .field span {
+    font-size: 15px;
+  }
+
+  .ticket-page .logo {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.ticket-page .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ticket-page .logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
