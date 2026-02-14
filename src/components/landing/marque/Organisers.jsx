@@ -185,13 +185,6 @@ const organisersData = [
     },
     {
         // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039050/abdul_qwd2vt.jpg",
-        name: "Sayyad Abdulrehman",
-        role: "Member",
-        linkedin: "https://www.linkedin.com/in/abdul-sayyad-875863369/"
-    },
-    {
-        // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039064/SupriyaAwtade_gfzpcr.png",
         name: "Awatade Supriya",
         role: "Member",
