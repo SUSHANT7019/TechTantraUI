@@ -128,6 +128,7 @@ export default function Registration() {
 
         if (!data.agreed_to_terms) errors.agreed_to_terms = "You must agree to the terms";
 
+
         return errors;
     };
 
@@ -171,13 +172,55 @@ export default function Registration() {
             return;
         }
 
-        // Instead of calling API, navigate to Payment page with data
-        navigate('/payment', {
-            state: {
-                ...formData,
-                amount: 1000
+        setIsLoading(true);
+
+        try {
+            const data = await api.post('register/', formData);
+
+            toast.success("Registration Successful!");
+
+            // Navigate to Payment page with data
+            navigate(`/payment/${data.id}`, {
+                state: {
+                    registrationId: data.id,
+                    ...formData,
+                    amount: 1000
+                }
+            });
+        } catch (err) {
+            console.error("Registration error:", err);
+            let errorMsg = "Registration failed. Please try again.";
+
+            if (err.data) {
+                const data = err.data;
+                // Handle different error structures
+                if (data.detail) {
+                    errorMsg = data.detail;
+                } else if (typeof data === 'object') {
+                    // Extract the first error found
+                    const keys = Object.keys(data);
+                    if (keys.length > 0) {
+                        const firstKey = keys[0];
+                        const errorContent = data[firstKey];
+                        const message = Array.isArray(errorContent) ? errorContent[0] : errorContent;
+
+                        // Customize message for specific fields if needed
+                        if (firstKey === 'email') {
+                            errorMsg = `Email Error: ${message}`;
+                        } else if (firstKey === 'transaction_id') {
+                            errorMsg = `Transaction ID Error: ${message}`;
+                        } else {
+                            // Capitalize first letter of field name for better readability 
+                            const fieldName = firstKey.charAt(0).toUpperCase() + firstKey.slice(1).replace(/_/g, ' ');
+                            errorMsg = `${fieldName}: ${message}`;
+                        }
+                    }
+                }
             }
-        });
+            toast.error(errorMsg);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -519,6 +562,33 @@ export default function Registration() {
                             <p className="text-xs text-blue-300/70 mt-1">* Non-refundable registration fee includes entry for the entire team.</p>
                         </div>
 
+                        {/* Terms */}
+                        <div className="pt-2">
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                                <div className="relative flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        name="agreed_to_terms"
+                                        checked={formData.agreed_to_terms}
+                                        onChange={handleChange}
+                                        className="peer sr-only"
+                                    />
+
+                                    <div className={`w-6 h-6 rounded-md border-2 border-gray-500 peer-checked:bg-cyan-500 peer-checked:border-cyan-500 transition-all mr-2 flex items-center justify-center ${touched.agreed_to_terms && errors.agreed_to_terms ? 'border-red-500' : ''}`}>
+
+                                        <svg className="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <span className={`text-sm text-gray-300 group-hover:text-white transition-colors select-none ${touched.agreed_to_terms && errors.agreed_to_terms ? 'text-red-400' : ''}`}>
+                                    I agree to the <a href="https://drive.google.com/file/d/1STp8d7vo7VusK9ybh-p9eJDl1o0HPKIe/view?usp=drive_link" className="text-cyan-400 hover:underline">Terms & Conditions</a> .
+                                </span>
+                            </label>
+                            {touched.agreed_to_terms && errors.agreed_to_terms && <p className="text-red-400 text-xs ml-9 mt-1">{errors.agreed_to_terms}</p>}
+
+                        </div>
+
                         {/* Submit Button */}
                         <div className="pt-4">
                             <button
@@ -530,7 +600,15 @@ export default function Registration() {
                                         : 'bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 text-white hover:shadow-cyan-500/25 hover:-translate-y-1'
                                     }`}
                             >
-                                Continue to Payment <ArrowRight className="w-6 h-6" />
+                                {isLoading ? (
+                                    <>
+                                        <Loader2 className="w-6 h-6 animate-spin" /> Processing...
+                                    </>
+                                ) : (
+                                    <>
+                                        Register & Pay <ArrowRight className="w-6 h-6" />
+                                    </>
+                                )}
                             </button>
                         </div>
                     </form>
