@@ -18,7 +18,9 @@ export default function Registration() {
         track_selection: '',
         problem_statement: '',
         team_members: [],
-        agreed_to_terms: false
+        agreed_to_terms: false,
+        payment_id: '',
+        payment_proof: null
     });
 
 
@@ -128,6 +130,9 @@ export default function Registration() {
 
         if (!data.agreed_to_terms) errors.agreed_to_terms = "You must agree to the terms";
 
+        // Payment Validation
+        if (!data.payment_id.trim()) errors.payment_id = "Transaction ID is required";
+        if (!data.payment_proof) errors.payment_proof = "Proof screenshot is required";
 
         return errors;
     };
@@ -155,6 +160,13 @@ export default function Registration() {
         });
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFormData(prev => ({ ...prev, payment_proof: file }));
+        }
+    };
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -175,16 +187,25 @@ export default function Registration() {
         setIsLoading(true);
 
         try {
-            const data = await api.post('register/', formData);
+            // Prepare FormData for file upload
+            const submitData = new FormData();
+            Object.keys(formData).forEach(key => {
+                if (key === 'team_members') {
+                    submitData.append(key, JSON.stringify(formData[key]));
+                } else {
+                    submitData.append(key, formData[key]);
+                }
+            });
+
+            const data = await api.upload('register/', submitData);
 
             toast.success("Registration Successful!");
 
-            // Navigate to Payment page with data
-            navigate(`/payment/${data.id}`, {
+            // Navigate to Success page
+            navigate('/success', {
                 state: {
-                    registrationId: data.id,
-                    ...formData,
-                    amount: 1000
+                    transactionId: formData.payment_id,
+                    team_name: formData.team_name
                 }
             });
         } catch (err) {
@@ -560,6 +581,59 @@ export default function Registration() {
                                 <span className="text-xl font-bold text-white">₹1000.00</span>
                             </div>
                             <p className="text-xs text-blue-300/70 mt-1">* Non-refundable registration fee includes entry for the entire team.</p>
+                        </div>
+
+                        {/* Payment & Verification Section */}
+                        <div className="space-y-6 pt-6 border-t border-white/10">
+                            <h3 className="text-xl font-bold text-orange-400 flex items-center gap-2">
+                                <CheckCircle className="w-5 h-5" /> Payment & Verification
+                            </h3>
+
+                            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                    {/* QR Code */}
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="p-4 bg-white rounded-xl mb-4 shadow-2xl">
+                                            <img
+                                                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=8010472310@upi&pn=TechTantra&am=1000&cu=INR`)}`}
+                                                alt="Payment QR"
+                                                className="w-32 h-32 sm:w-40 sm:h-40"
+                                            />
+                                        </div>
+                                        <p className="text-xs text-gray-400">Scan to pay ₹1000</p>
+                                        <p className="text-sm font-mono text-cyan-400 mt-2">8010472310@upi</p>
+                                    </div>
+
+                                    {/* Inputs */}
+                                    <div className="space-y-4">
+                                        <div className="space-y-1">
+                                            <label className="text-sm font-medium text-gray-300 ml-1">Transaction ID / UTR <span className="text-red-400">*</span></label>
+                                            <input
+                                                type="text"
+                                                name="payment_id"
+                                                value={formData.payment_id}
+                                                onChange={handleChange}
+                                                onBlur={() => handleBlur('payment_id')}
+                                                className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${touched.payment_id && errors.payment_id ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-orange-400'} text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-orange-400 transition-all font-mono`}
+                                                placeholder="12-digit UTR Number"
+                                            />
+                                            {touched.payment_id && errors.payment_id && <p className="text-red-400 text-xs ml-1">{errors.payment_id}</p>}
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <label className="text-sm font-medium text-gray-300 ml-1">Payment Proof (Screenshot) <span className="text-red-400">*</span></label>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleFileChange}
+                                                onBlur={() => handleBlur('payment_proof')}
+                                                className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-400/20 file:text-orange-400 hover:file:bg-orange-400/30 cursor-pointer"
+                                            />
+                                            {touched.payment_proof && errors.payment_proof && <p className="text-red-400 text-xs ml-1">{errors.payment_proof}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Terms */}
