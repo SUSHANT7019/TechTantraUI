@@ -442,7 +442,7 @@ const Schedule = () => {
                         THE TIMELINE
                     </h2>
                     <p className="text-[#0AC4E0] font-bold text-sm sm:text-lg tracking-widest uppercase">
-                        36 Hours of Creation
+                    24 Hours of Creation
                     </p>
                 </motion.div>
 
@@ -452,7 +452,7 @@ const Schedule = () => {
                         <div className="relative w-full h-full flex items-center justify-center">
                             <div className="absolute w-64 h-64 opacity-20" style={{ background: 'radial-gradient(circle, #0992C2 0%, transparent 70%)' }} />
                             <div className="border border-[#0992C2]/40 w-28 h-28 rounded-full flex items-center justify-center bg-black/40 z-20 shadow-lg">
-                                <span className="text-4xl font-black text-white font-outfit">36H</span>
+                                <span className="text-4xl font-black text-white font-outfit">24H</span>
                             </div>
 
                             <OrbitPath radius={90} color="#0AC4E0" />
