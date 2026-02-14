@@ -46,7 +46,7 @@ const organisersData = [
 
     {
         // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039059/rj_oger38.jpg",
+        image: "https://i.ibb.co/v61SRq0z/rj.jpg",
         name: "Jagdale Rohit",
         role: "Design Head",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
