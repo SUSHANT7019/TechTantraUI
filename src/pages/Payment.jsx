@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import QRCode from "react-qr-code";
 import api from "../api";
 import toast from 'react-hot-toast';
@@ -9,7 +9,9 @@ import { Copy, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 export default function Payment() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { registrationId, team_name, leader_name, email, phone, amount = 1000 } = location.state || {};
+    const { registrationId: stateRegId, team_name = "Team", leader_name, email, phone, amount = 1000 } = location.state || {};
+    const { registrationId: paramRegId } = useParams();
+    const registrationId = stateRegId || paramRegId;
 
     const [transactionId, setTransactionId] = useState("");
     const [isValidTxnId, setIsValidTxnId] = useState(false);
@@ -35,8 +37,10 @@ export default function Payment() {
     const handleTxnIdChange = (e) => {
         const val = e.target.value;
         setTransactionId(val);
-        // Only allow alphanumeric characters (letters and numbers), no special characters.
-        setIsValidTxnId(/^[a-zA-Z0-9]+$/.test(val));
+        // Trim and remove any spaces/special chars for validation
+        const sanitized = val.trim().replace(/\s/g, '');
+        // Only allow alphanumeric characters
+        setIsValidTxnId(sanitized.length > 0 && /^[a-zA-Z0-9]+$/.test(sanitized));
     };
 
     const copyToClipboard = () => {
@@ -56,8 +60,9 @@ export default function Payment() {
 
         try {
             const formData = new FormData();
+            const sanitizedTxnId = transactionId.trim().replace(/\s/g, '');
             formData.append('registration_id', registrationId);
-            formData.append('transaction_id', transactionId);
+            formData.append('transaction_id', sanitizedTxnId);
             formData.append('amount', amount);
             formData.append('payment_status', 'Pending Verification');
             formData.append('proof_screenshot', proofFile);
@@ -68,9 +73,12 @@ export default function Payment() {
             navigate('/success', { state: { transactionId, team_name } });
 
         } catch (error) {
-            console.error("Payment verification failed:", error);
-            const errorMsg = error.data?.detail || "Payment verification failed. Please try again.";
+            console.error("Full Payment Error:", error);
+            const errorMsg = error.data?.detail || error.message || "Payment verification failed. Please try again.";
             toast.error(errorMsg);
+            if (error.data && typeof error.data === 'object') {
+                console.log("Validation Errors:", error.data);
+            }
         } finally {
             setIsLoading(false);
         }
