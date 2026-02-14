@@ -15,7 +15,7 @@ export default function Payment() {
 
     const [transactionId, setTransactionId] = useState("");
     const [isValidTxnId, setIsValidTxnId] = useState(false);
-    const [proofFile, setProofFile] = useState(null);
+
     const [isLoading, setIsLoading] = useState(false);
     const [copied, setCopied] = useState(false);
 
@@ -52,22 +52,20 @@ export default function Payment() {
 
     const verifyPayment = async () => {
         if (!isValidTxnId) return;
-        if (!proofFile) {
-            toast.error("Please upload a payment screenshot.");
-            return;
-        }
+
         setIsLoading(true);
 
         try {
-            const formData = new FormData();
             const sanitizedTxnId = transactionId.trim().replace(/\s/g, '');
-            formData.append('registration_id', registrationId);
-            formData.append('transaction_id', sanitizedTxnId);
-            formData.append('amount', amount);
-            formData.append('payment_status', 'Pending Verification');
-            formData.append('proof_screenshot', proofFile);
 
-            await api.upload("payments/", formData);
+            const payload = {
+                registration_id: registrationId,
+                transaction_id: sanitizedTxnId,
+                amount: amount,
+                payment_status: 'Pending Verification'
+            };
+
+            await api.post("payments/", payload);
 
             toast.success("Payment Submitted! We will verify it shortly.");
             navigate('/success', { state: { transactionId, team_name } });
@@ -161,18 +159,7 @@ export default function Payment() {
                             )}
                         </div>
 
-                        {/* Payment Proof Upload */}
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700 ml-1">
-                                Payment Proof Screenshot <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setProofFile(e.target.files[0])}
-                                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-100 file:text-cyan-700 hover:file:bg-cyan-200 cursor-pointer"
-                            />
-                        </div>
+
 
                         {/* Confirm Button */}
                         <button
