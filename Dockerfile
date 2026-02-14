@@ -19,15 +19,11 @@ FROM nginx:stable-alpine
 
 ENV PORT=8080
 
-# Remove default config
-RUN rm /etc/nginx/conf.d/default.conf
+# Copy the pre-built static site (this dist folder) into nginx html directory
+COPY . /usr/share/nginx/html
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy only build output
-COPY --from=builder /app/build /usr/share/nginx/html
-
+# Ensure container starts on the configured port (defaults to 8080)
 EXPOSE 8080
 
-CMD sh -c "sed -i 's/listen 80;/listen ${PORT};/' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+# Update default nginx listen port at runtime and run nginx
+CMD sh -c "sed -i 's/listen 80;/listen ${PORT};/' /etc/nginx/conf.d/default.conf || true && nginx -g 'daemon off;'"
