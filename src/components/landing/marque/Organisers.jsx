@@ -436,6 +436,22 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/rutuja-godase-04b4573a5/"
     },
+
+    
+    {
+        // linked in
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771156611/Patil_Aditi_wqj8ji.png",
+        name: "Patil Aditi",
+        role: "Member",
+        linkedin: "https://www.linkedin.com/in/aditi-patil-661485390/"
+    },
+    {
+        // linked 
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771156581/More_Akanksha_btftjz.png",
+        name: "More Akanksha",
+        role: "Member",
+        linkedin: "https://www.linkedin.com/in/akanksha-more-923613386/"
+    },
 ];
 
 /* ───────── Styles ───────── */
