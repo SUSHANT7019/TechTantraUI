@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import InfiniteMarquee from "./InfiniteMarquee";
 import OrganiserCard from "./OrganiserCard";
 
-/* Cleaned sample data */
+/* ───────── Sample Data ───────── */
 const organisersData = [
     {
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039060/rk_ydzeie.png",
@@ -17,7 +18,6 @@ const organisersData = [
         role: "Co-Event Head",
         linkedin: "https://www.linkedin.com/in/tejal-abhivant/"
     },
-
     {
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039086/zk_r9kicv.png",
         name: "Kazi Ziyan",
@@ -43,15 +43,13 @@ const organisersData = [
         role: "Co-Technical Head",
         linkedin: "https://www.linkedin.com/in/sanskruti-yadav-498333356/"
     },
-
     {
         // linked in 
-        image: "https://i.ibb.co/v61SRq0z/rj.jpg",
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039059/rj_oger38.jpg",
         name: "Jagdale Rohit",
         role: "Design Head",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
-
     {
         // Photo missing
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039057/pk_fjwzm3.png",
@@ -185,12 +183,18 @@ const organisersData = [
     },
     {
         // linked in 
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039050/abdul_qwd2vt.jpg",
+        name: "Sayyad Abdulrehman",
+        role: "Member",
+        linkedin: "https://www.linkedin.com/in/abdul-sayyad-875863369/"
+    },
+    {
+        // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039064/SupriyaAwtade_gfzpcr.png",
         name: "Awatade Supriya",
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0/"
     },
-
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039051/GayatriYelpale_q4rn1g.png",
@@ -303,16 +307,10 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0"
     },
-
-
-    //Stop here   
-
-
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039086/um_junf6o.png",
         name: "Manedeshmukh Unnati",
-
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0"
     },
@@ -336,9 +334,7 @@ const organisersData = [
         name: "Dhumal Ranjit",
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
-
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039051/Ajit_jfrm9t.png",
@@ -346,7 +342,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039055/ms_da4qhf.png",
@@ -354,7 +349,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039056/badave_yu1uh5.png",
@@ -362,7 +356,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039064/sm_vtaaik.png",
@@ -370,8 +363,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0"
     },
-
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039067/sk_c0kqge.png",
@@ -379,7 +370,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039063/ShrutikaDubal_aigzai.png",
@@ -401,7 +391,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sayali-more-2867883b0"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039053/kp_aighrb.png",
@@ -423,7 +412,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/arpita-patil-443227397/"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039051/aditya_wtcybc.png",
@@ -431,7 +419,6 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
-
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039052/gp_sdmel6.png",
@@ -448,12 +435,25 @@ const organisersData = [
     },
 ];
 
-import { motion } from "framer-motion";
-
+/* ───────── Styles ───────── */
 const Section = styled.section`
   padding: 5rem 0;
   text-align: center;
   overflow: hidden;
+  position: relative;
+  
+  /* Background accent for visual interest */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+    top: 20%;
+    left: -100px;
+    z-index: 0;
+    pointer-events: none;
+  }
 `;
 
 const Title = styled(motion.h2)`
@@ -463,9 +463,136 @@ const Title = styled(motion.h2)`
   background: linear-gradient(90deg, #0992C2, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1;
 `;
 
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const MarqueeCardObj = styled.div`
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 30px rgba(9, 146, 194, 0.15);
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+`;
+
+const CardLabel = styled.div`
+  text-align: left;
+  padding: 0 2rem 1rem 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+  }
+`;
+
+/* ───────── Helper Functions ───────── */
+// Function to split array into chunks
+const chunkArray = (array, size) => {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += size) {
+        chunks.push(array.slice(i, i + size));
+    }
+    return chunks;
+};
+
+
+/* ───────── Custom Hook ───────── */
+// Custom hook to detect visibility using IntersectionObserver
+const useVisibility = (options) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        // Check if IntersectionObserver is supported
+        if (!('IntersectionObserver' in window)) {
+            setIsVisible(true); // Fallback: always visible
+            return;
+        }
+
+        const observer = new IntersectionObserver(([entry]) => {
+            // setIsVisible(entry.isIntersecting); // Basic toggle
+
+            // OPTIONAL: Using intersectionRatio if strictly > 0.5 is needed, but 'threshold: 0.5' in options handles it.
+            // entry.isIntersecting is sufficient when threshold is set.
+            setIsVisible(entry.isIntersecting);
+
+        }, options);
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current);
+            }
+        };
+    }, [options]); // Re-run if options change
+
+    return [ref, isVisible];
+};
+
+/* ───────── CardWithMarquee Component ───────── */
+const CardWithMarquee = ({ data, label }) => {
+    // Use the custom hook with 0.5 threshold (50% visibility)
+    // useMemo to keep options stable across renders
+    const options = React.useMemo(() => ({
+        threshold: 0.5,
+        rootMargin: "0px" // Exact viewport
+    }), []);
+
+    const [cardRef, isVisible] = useVisibility(options);
+
+    return (
+        <MarqueeCardObj ref={cardRef}>
+            {label && <CardLabel>{label}</CardLabel>}
+            {/* 
+        Marquee passes 'isPaused' based on !isVisible.
+        It runs only when visible (isVisible === true).
+      */}
+            <InfiniteMarquee duration={50} gap={24} isPaused={!isVisible}>
+                {data.map((organiser, index) => (
+                    <OrganiserCard key={`${organiser.name}-${index}`} organiser={organiser} />
+                ))}
+            </InfiniteMarquee>
+        </MarqueeCardObj>
+    );
+};
+
+/* ───────── Main Component ───────── */
 const Organisers = () => {
+    const leadsAndOrganizers = organisersData.slice(0, 22);
+    const members = organisersData.slice(22);
+
     return (
         <Section id="organisers">
             <Title
@@ -474,21 +601,19 @@ const Organisers = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                Organisers
+                Meet The Team
             </Title>
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-            >
-                <InfiniteMarquee duration={60} gap={24}>
-                    {organisersData.map((organiser, index) => (
-                        <OrganiserCard key={index} organiser={organiser} />
-                    ))}
-                </InfiniteMarquee>
-            </motion.div>
+            <CardContainer>
+                <CardWithMarquee
+                    data={leadsAndOrganizers}
+                    label="Leads and Organizers"
+                />
+                <CardWithMarquee
+                    data={members}
+                    label="Members"
+                />
+            </CardContainer>
         </Section>
     );
 };
