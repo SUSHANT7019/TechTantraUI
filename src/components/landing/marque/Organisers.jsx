@@ -125,19 +125,20 @@ const organisersData = [
         role: "Co-Hospitality Head",
         linkedin: "https://www.linkedin.com/in/arundati-patil-93110837a/"
     },
-    {
-        // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039053/Harsh_yijugh.png",
-        name: "Ghadage Harshad",
-        role: "Writing Head",
-        linkedin: "https://www.linkedin.com/in/sushantthadge/"
-    },
+    
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039086/Tanishkaphand_wjo3hq.png",
         name: "Phand Tanishka",
-        role: "Co-Writing Head",
+        role: "Writing Head",
         linkedin: "https://www.linkedin.com/in/tanishka-phand-b98b363a3/"
+    },
+    {
+        // linked in 
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039053/Harsh_yijugh.png",
+        name: "Ghadage Harshad",
+        role: "Co-Writing Head",
+        linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
     {
         // linked in 
