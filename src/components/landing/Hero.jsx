@@ -132,7 +132,8 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                 >
                     <h2 className="text-sm sm:text-xl md:text-2xl text-cyan-400 font-mono mb-3 sm:mb-4 tracking-widest min-h-[32px] sm:min-h-[40px] flex items-center justify-center">
-                        <Typewriter phrases={["Innovate | Build | Compete", "TechTantra Hackathon 2026"]} />
+                        {/* <Typewriter phrases={["Innovate | Build | Compete", "TechTantra Hackathon 2026"]} /> */}
+                        <Typewriter phrases={["SVERI's College Of Engineering(Polytechnic), Pandharpur", "Department Of Information Technology", "Organizes....", "24 Hours National Level Hackathon 2K26"]} />
                     </h2>
                     <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-4 sm:mb-6 tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500 font-outfit">
                         TechTantra 1.0
@@ -150,7 +151,7 @@ const Hero = () => {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                         <RegisterButton onClick={() => navigate('/register')} />
-                        <RuleBookButton onClick={() => window.open('#rulebook', '_self')} />
+                        <RuleBookButton onClick={() => window.open('https://drive.google.com/file/d/1STp8d7vo7VusK9ybh-p9eJDl1o0HPKIe/view?usp=drive_link', '_blank')} />
                     </div>
                 </motion.div>
             </div>
