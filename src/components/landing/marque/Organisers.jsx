@@ -19,7 +19,7 @@ const organisersData = [
         linkedin: "https://www.linkedin.com/in/tejal-abhivant/"
     },
     {
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039086/zk_r9kicv.png",
+        image: "https://i.ibb.co/v4FWrkZB/IMG-20260215-123301.jpg",
         name: "Kazi Ziyan",
         role: "Lead Organiser",
         linkedin: "https://www.linkedin.com/in/ziyan-kazi-72831235a/"
@@ -42,6 +42,20 @@ const organisersData = [
         name: "Yadav Sanskruti",
         role: "Co-Technical Head",
         linkedin: "https://www.linkedin.com/in/sanskruti-yadav-498333356/"
+    },
+    {
+        // linked in 
+        image: "https://i.ibb.co/rKnK06mG/IMG-20260215-122822.jpg",
+        name: "Girish Pawar",
+        role: "Management Head",
+        linkedin: "https://www.linkedin.com/in/sushantthadge/"
+    },
+    {
+        // linked in 
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039055/ArpitaKulkarni_apdbgp.png",
+        name: "Kulkarni Arpita",
+        role: "Co-Management Head",
+        linkedin: "https://www.linkedin.com/in/arpita-kulkarni-03a143388/"
     },
     {
         // linked in 
@@ -139,20 +153,15 @@ const organisersData = [
         role: "Co-Social Media Head",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
-    {
+
+     {
         // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039050/girish_a5dloc.png",
-        name: "Girish Pawar",
-        role: "Management Head",
-        linkedin: "https://www.linkedin.com/in/sushantthadge/"
+        image: "https://i.ibb.co/qYQtwsj3/IMG-20260215-WA0014.jpg",
+        name: "Chavare Yashraj",
+        role: "Member",
+        linkedin: "https://www.linkedin.com/in/arundati-patil-93110837a/"
     },
-    {
-        // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039055/ArpitaKulkarni_apdbgp.png",
-        name: "Kulkarni Arpita",
-        role: "Co-Management Head",
-        linkedin: "https://www.linkedin.com/in/arpita-kulkarni-03a143388/"
-    },
+    
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039062/ShiddhiPatil_emxx0u.png",
@@ -181,13 +190,7 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/bhumi-raut-579461374/"
     },
-    {
-        // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039050/abdul_qwd2vt.jpg",
-        name: "Sayyad Abdulrehman",
-        role: "Member",
-        linkedin: "https://www.linkedin.com/in/abdul-sayyad-875863369/"
-    },
+   
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039064/SupriyaAwtade_gfzpcr.png",
