@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+
 const Typewriter = ({ phrases }) => {
     const [index, setIndex] = useState(0);
     const [subIndex, setSubIndex] = useState(0);
