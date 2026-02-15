@@ -33,6 +33,7 @@ const Track = styled.div`
   display: flex;
   width: max-content;
   animation: ${scroll} ${({ duration }) => duration}s linear infinite;
+  animation-play-state: ${({ isPaused }) => (isPaused ? "paused" : "running")};
   will-change: transform;
 
   ${Wrapper}:hover & {
@@ -52,18 +53,19 @@ const Set = styled.div`
 
 /* ───────── Component ───────── */
 const InfiniteMarquee = ({
-    children,
-    duration = 60,
-    gap = 24
+  children,
+  duration = 60,
+  gap = 24,
+  isPaused = false
 }) => {
-    return (
-        <Wrapper>
-            <Track duration={duration}>
-                <Set gap={gap}>{children}</Set>
-                <Set gap={gap}>{children}</Set>
-            </Track>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Track duration={duration} isPaused={isPaused}>
+        <Set gap={gap}>{children}</Set>
+        <Set gap={gap}>{children}</Set>
+      </Track>
+    </Wrapper>
+  );
 };
 
 export default InfiniteMarquee;
