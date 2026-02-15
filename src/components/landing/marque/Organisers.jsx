@@ -59,10 +59,10 @@ const organisersData = [
     },
     {
         // linked in 
-        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039059/rj_oger38.jpg",
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771141106/rj_zhoiyl.jpg",
         name: "Jagdale Rohit",
         role: "Design Head",
-        linkedin: "https://www.linkedin.com/in/sushantthadge/"
+        linkedin: "https://www.linkedin.com/in/rohit-jagdale-44132836b/"
     },
     {
         // Photo missing
