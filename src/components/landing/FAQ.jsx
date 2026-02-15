@@ -256,7 +256,7 @@ const FAQ = () => {
                     <p className="text-[#FFFCFB] mb-4">Still have questions?</p>
                     <a
                         href="https://chat.whatsapp.com/EKHcVEAcICB9rIsahdGpOK" target="_blank"
-                        className="inline-flex items-center gap-2 text-[#0AC4E0] font-bold hover:text-white transition-colors duration-300 border-b border-[#0AC4E0] hover:border-white pb-1"
+                        className="inline-flex items-center gap-2 text-[#08CB00] font-bold hover:text-white transition-colors duration-300 border-b border-[#0AC4E0] hover:border-white pb-1"
                     >
                         <HelpCircle className="w-5 h-5" />
                         Visit our whatsapp Community
