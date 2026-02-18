@@ -453,6 +453,16 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/akanksha-more-923613386/"
     },
+    
+    {
+        // linked 
+        image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771418583/kavade_sanika_sij7jc.jpg",
+        name: "Kavade Sanika",
+        role: "Member",
+        linkedin: "https://www.linkedin.com/in/akanksha-more-923613386/"
+    },
+
+    
 ];
 
 /* ───────── Styles ───────── */
