@@ -4,8 +4,12 @@ import { User, Mail, Phone, Building, Calendar, Users, CheckCircle, Plus, Trash2
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import LoadingOverlay from '../components/LoadingOverlay';
+import RegistrationClosed from '../components/RegistrationClosed';
 
 export default function Registration() {
+    // Registration is closed
+    return <RegistrationClosed />;
+
     const [formData, setFormData] = useState({
         team_name: '',
         leader_name: '',

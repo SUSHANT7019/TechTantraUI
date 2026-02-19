@@ -442,7 +442,11 @@ const Schedule = () => {
                         THE TIMELINE
                     </h2>
                     <p className="text-[#0AC4E0] font-bold text-sm sm:text-lg tracking-widest uppercase">
+<<<<<<< HEAD
                     24 Hours of Creation
+=======
+                        24 Hours of Creation
+>>>>>>> e862e23 (updated project)
                     </p>
                 </motion.div>
 

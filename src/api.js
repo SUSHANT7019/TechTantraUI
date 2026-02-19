@@ -7,7 +7,14 @@
  * - JSON body handling
  */
 
+<<<<<<< HEAD
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://techtantra-454332459962.asia-southeast1.run.app/api/';
+=======
+// In production, we usually serve from the same domain under /api/
+// Locally, we use the environment variable or the hardcoded fallback
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ||
+    (import.meta.env.PROD ? '/api/' : 'https://techtantra-454332459962.asia-southeast1.run.app/api/');
+>>>>>>> e862e23 (updated project)
 
 async function request(endpoint, options = {}) {
     if (!BASE_URL) {

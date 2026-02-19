@@ -634,24 +634,7 @@ export default function AdminDashboard() {
                                     </div>
                                 </div>
 
-                                {selectedParticipant.payment_proof && (
-                                    <div className="col-span-1 md:col-span-2 mt-2">
-                                        <h3 className="font-semibold text-gray-900 border-b pb-2 mb-3">Payment Proof</h3>
-                                        <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
-                                            <img
-                                                src={selectedParticipant.payment_proof?.startsWith('http')
-                                                    ? selectedParticipant.payment_proof
-                                                    : `${import.meta.env.VITE_API_BASE_URL.replace('/api/', '')}${selectedParticipant.payment_proof}`}
-                                                alt="Payment Proof"
-                                                className="max-h-64 object-contain mx-auto rounded shadow-sm border border-gray-100"
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = 'https://placehold.co/400x400?text=Scan+Not+Found';
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                )}
+
                             </div>
 
                             <div className="mt-8 flex justify-end gap-3">

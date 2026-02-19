@@ -50,6 +50,7 @@ const organisersData = [
         role: "Management Head",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
+<<<<<<< HEAD
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039055/ArpitaKulkarni_apdbgp.png",
@@ -64,6 +65,8 @@ const organisersData = [
         role: "Design Head",
         linkedin: "https://www.linkedin.com/in/rohit-jagdale-44132836b/"
     },
+=======
+>>>>>>> e862e23 (updated project)
     {
         // Photo missing
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039057/pk_fjwzm3.png",
