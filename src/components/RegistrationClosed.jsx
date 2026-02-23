@@ -59,7 +59,7 @@ const RegistrationClosed = () => {
                     <div className="mt-8 pt-6 border-t border-white/5 mx-auto max-w-xs">
                         <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
                             <AlertCircle className="w-4 h-4" />
-                            <span>Stay tuned for next year!</span>
+                            <span>Contact on 8010472310 for further Query!</span>
                         </div>
                     </div>
                 </div>
