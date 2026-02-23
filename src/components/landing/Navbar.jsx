@@ -28,7 +28,8 @@ const Navbar = () => {
     }, [isOpen]);
 
     const navLinks = [
-        { name: 'Home', id: 'home', emoji: '🏠' },
+        { name: 'Home', id: 'home', emoji: '🏠', path: '/' },
+        { name: 'Winners', id: 'winners', emoji: '🏆', path: '/winners' },
         { name: 'About', id: 'about', emoji: '💡' },
         { name: 'Prizes', id: 'prizes', emoji: '🏆' },
         { name: 'Tracks', id: 'tracks', emoji: '🛤️' },
@@ -50,14 +51,17 @@ const Navbar = () => {
         }
     };
 
-    const handleNavClick = (id) => {
+    const handleNavClick = (link) => {
         setIsOpen(false);
-        if (location.pathname !== '/') {
+        if (link.path) {
+            navigate(link.path);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (location.pathname !== '/') {
             navigate('/');
-            setTimeout(() => scrollToSection(id), 300);
+            setTimeout(() => scrollToSection(link.id), 300);
         } else {
             // Small delay to let menu close animation finish
-            setTimeout(() => scrollToSection(id), 100);
+            setTimeout(() => scrollToSection(link.id), 100);
         }
     };
 
@@ -116,7 +120,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center gap-2.5 cursor-pointer relative z-[60]"
-                        onClick={() => handleNavClick('home')}
+                        onClick={() => handleNavClick(navLinks[0])}
                     >
                         <div className="relative">
                             <img
@@ -138,7 +142,7 @@ const Navbar = () => {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.08 }}
-                                onClick={() => handleNavClick(link.id)}
+                                onClick={() => handleNavClick(link)}
                                 className="relative px-3 lg:px-4 py-2 text-zinc-300 hover:text-white transition-colors font-medium text-sm uppercase tracking-wide group"
                             >
                                 {link.name}
@@ -261,7 +265,7 @@ const Navbar = () => {
                                     <motion.button
                                         key={link.name}
                                         variants={itemVariants}
-                                        onClick={() => handleNavClick(link.id)}
+                                        onClick={() => handleNavClick(link)}
                                         whileTap={{ scale: 0.96 }}
                                         className="group relative w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] hover:border-cyan-500/20 active:bg-cyan-500/10 active:border-cyan-500/30 transition-all duration-200"
                                     >

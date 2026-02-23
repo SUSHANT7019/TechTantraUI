@@ -50,7 +50,6 @@ const organisersData = [
         role: "Management Head",
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
-<<<<<<< HEAD
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039055/ArpitaKulkarni_apdbgp.png",
@@ -65,8 +64,6 @@ const organisersData = [
         role: "Design Head",
         linkedin: "https://www.linkedin.com/in/rohit-jagdale-44132836b/"
     },
-=======
->>>>>>> e862e23 (updated project)
     {
         // Photo missing
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039057/pk_fjwzm3.png",
@@ -128,7 +125,7 @@ const organisersData = [
         role: "Co-Hospitality Head",
         linkedin: "https://www.linkedin.com/in/arundati-patil-93110837a/"
     },
-    
+
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039086/Tanishkaphand_wjo3hq.png",
@@ -158,14 +155,14 @@ const organisersData = [
         linkedin: "https://www.linkedin.com/in/sushantthadge/"
     },
 
-     {
+    {
         // linked in 
         image: "https://i.ibb.co/qYQtwsj3/IMG-20260215-WA0014.jpg",
         name: "Chavare Yashraj",
         role: "Member",
         linkedin: "https://www.linkedin.com/in/arundati-patil-93110837a/"
     },
-    
+
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039062/ShiddhiPatil_emxx0u.png",
@@ -194,7 +191,7 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/bhumi-raut-579461374/"
     },
-   
+
     {
         // linked in 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771039064/SupriyaAwtade_gfzpcr.png",
@@ -441,7 +438,7 @@ const organisersData = [
         linkedin: "https://www.linkedin.com/in/rutuja-godase-04b4573a5/"
     },
 
-    
+
     {
         // linked in
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771156611/Patil_Aditi_wqj8ji.png",
@@ -456,7 +453,7 @@ const organisersData = [
         role: "Member",
         linkedin: "https://www.linkedin.com/in/akanksha-more-923613386/"
     },
-    
+
     {
         // linked 
         image: "https://res.cloudinary.com/dgx4bwlbo/image/upload/v1771418583/kavade_sanika_sij7jc.jpg",
@@ -465,7 +462,7 @@ const organisersData = [
         linkedin: "https://www.linkedin.com/in/akanksha-more-923613386/"
     },
 
-    
+
 ];
 
 /* ───────── Styles ───────── */

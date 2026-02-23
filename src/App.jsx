@@ -11,6 +11,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/landing/Navbar';
 
 import PaymentSuccess from './pages/PaymentSuccess';
+import WinnersPage from './pages/WinnersPage';
 import { Toaster } from 'react-hot-toast';
 
 const ConditionalNavbar = () => {
@@ -44,6 +45,7 @@ function App() {
         <ConditionalNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/winners" element={<WinnersPage />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/payment/:registrationId" element={<Payment />} />
           {/* Fallback for direct access without ID or testing */}
