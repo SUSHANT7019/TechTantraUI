@@ -40,7 +40,7 @@ const Home = () => {
                     playsInline
                     className="w-full h-full object-cover"
                 >
-                    <source src="https://res.cloudinary.com/dgx4bwlbo/video/upload/v1771039051/background_vopq9v.mp4" type="video/mp4" />
+                    <source src="/bgvod.mp4" type="video/mp4" />
                 </video>
                 {/* Overlay for readability */}
                 <div className="absolute inset-0 bg-black/30"></div>
