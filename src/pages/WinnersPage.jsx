@@ -73,7 +73,7 @@ const WinnersPage = () => {
                     playsInline
                     className="w-full h-full object-cover"
                 >
-                    <source src="https://res.cloudinary.com/dgx4bwlbo/video/upload/v1771039051/background_vopq9v.mp4" type="video/mp4" />
+                    <source src="/bgvod.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
