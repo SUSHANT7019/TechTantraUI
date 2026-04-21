@@ -232,7 +232,7 @@ export default function Registration() {
             <LoadingOverlay isLoading={isLoading} message="Processing Registration..." />
 
             {/* Video Background */}
-            <div className="fixed inset-0 z-0 text-white">
+             <div className="fixed inset-0 z-0">
                 <video
                     autoPlay
                     loop
@@ -242,9 +242,9 @@ export default function Registration() {
                 >
                     <source src="/bgvod.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 bg-black/30"></div>
             </div>
-
+        
             <div className="relative z-10 container mx-auto px-3 sm:px-4 max-w-3xl">
                 <div className="text-center mb-10 animate-fade-in-up">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-4 font-outfit tracking-tight">

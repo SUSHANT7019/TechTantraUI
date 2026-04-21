@@ -62,8 +62,8 @@ const WinnersPage = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    return (
-        <div className="min-h-screen bg-black text-white selection:bg-yellow-500/30">
+    return (  
+         <div className="min-h-screen bg-black text-white selection:bg-yellow-500/30">
             {/* Video Background */}
             <div className="fixed inset-0 z-0">
                 <video
@@ -77,7 +77,7 @@ const WinnersPage = () => {
                 </video>
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
-
+        
             <div className="relative z-10">
                 {/* Hero Section */}
                 <section className="relative pt-32 pb-20 overflow-hidden">
